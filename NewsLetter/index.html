@@ -1,0 +1,49 @@
+<DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title> AJAX with JavaScript</title>
+            <link href='css/style.css' rel='stylesheet' type='text/css'>
+            <script src="jquery.js"></script>
+            <script>
+                $('document').ready(function(){
+                    $('form').submit(function(evt){
+                        evt.preventDefault();
+                        var url = $(this).attr("action");
+                        var formData = $(this).serialize();
+                        $.post(url, formData, function(response){
+                            $('#signup').html("<p> Thanks for signing up! </p>");
+                        }).fail(function(jqXR){
+                            alert(jqXR.statusText)
+                        });// end post
+                    }); //end submit
+                }); //end ready
+            </script>
+        </head>
+        <body>
+            <div class="grid-container centered">
+                <div class="grid-100">
+                    <div class="contained">
+                        <div class="grid-100">
+                            <div class="heading">
+                                <h1> Signup for our NewsLetter</h1>
+                                <div id='signup'>
+                                    <form method='post' action='/signup'>
+                                        <label for="userName"> Please type your username</label>
+                                        <input type="text" name="userName" id="userName"> <br>
+                                        <label for="email"> Please type your email address</label>
+                                        <input type="email" name="email" id="email"> <br>
+                                        <label for="submit"></label>
+                                        <input type="submit" value="Signup!" id="submit"> <br>
+                                    </form>
+                                </div>
+                            </div>
+                            <ul id='ajax'>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
